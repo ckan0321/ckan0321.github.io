@@ -98,7 +98,7 @@ header a {
 }
 
 header a:hover {
-  color: #11963f;
+  color: #480d82;
   text-decoration: none;
   background: #eee;
   border-radius: 4px;
@@ -310,7 +310,7 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(17,150,63,0.8);
+  background: rgba(72,13,130,0.8);
   z-index: 1;
 }
 
@@ -631,7 +631,7 @@ footer {
   border-radius: 4px;
   border: none;
   margin-bottom: 10px;
-  background: #0e6d32;
+  background: #340a61;
   color: #fff;
   transition: .5s ease all;
 }
@@ -661,7 +661,7 @@ footer {
 #contact-form input:focus,
 #contact-form textarea:focus {
   outline: none;
-  background: #0b502a;
+  background: #26074a;
 }
 
 #contact-form textarea {

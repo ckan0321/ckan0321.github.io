@@ -864,7 +864,7 @@ footer {
 .about-header {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 50px;
 }
 
 .about-header .profile-photo {

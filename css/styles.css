@@ -860,3 +860,17 @@ footer {
   object-fit: cover;
   border: 3px solid #dcd9d9;
 }
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.about-header .profile-photo {
+  margin: 0;
+}
+
+.about-header .heading {
+  margin: 0;
+}

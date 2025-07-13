@@ -357,6 +357,7 @@ footer {
 #about {
   padding: 75px 15px;
   border-bottom: 1px solid #dcd9d9;
+  text-align: center;
 }
 
 #about h2 {
@@ -859,18 +860,4 @@ footer {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #dcd9d9;
-}
-
-.about-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.about-header .profile-photo {
-  margin: 0;
-}
-
-.about-header .heading {
-  margin: 0;
 }

@@ -548,6 +548,14 @@ footer {
   float: left;
 }
 
+.project-image img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 .project-info {
   position: absolute;
   top: 50%;

@@ -849,3 +849,10 @@ footer {
     padding: 5px 10px;
   }
 }
+
+
+#experience .heading {
+  display: block;
+  margin-left: 0;
+  text-align: left;
+}

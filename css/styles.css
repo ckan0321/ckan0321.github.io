@@ -377,7 +377,6 @@ footer {
 
 #experience h2 {
   color: #374054;
-  text-align: left;
 }
 
 #experience-timeline {
@@ -850,9 +849,3 @@ footer {
   }
 }
 
-
-#experience .heading {
-  display: block;
-  margin-left: 0;
-  text-align: left;
-}

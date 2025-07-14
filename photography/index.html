@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calvin Kan Photography Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #222;
+      color: #fff;
+    }
+    h1 {
+      margin: 0;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 1rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      object-fit: cover;
+      transition: transform 0.2s ease-in-out;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Calvin Kan Photography</h1>
+    <p>A curated collection of 100 photos</p>
+  </header>
+
+  <main class="gallery">
+    <!-- Sample image block repeated 100 times -->
+    <!-- Replace image paths with your actual image filenames -->
+    <!-- You can automate this with a script later -->
+    <!-- Example below shows only first 10 for brevity -->
+    <img src="images/photo1.jpg" alt="Photo 1" />
+    <!-- Repeat until photo100.jpg -->
+  </main>
+
+  <footer>
+    &copy; 2025 Calvin Kan. All rights reserved.
+  </footer>
+</body>
+</html>

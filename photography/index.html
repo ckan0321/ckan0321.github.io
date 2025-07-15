@@ -1,12 +1,11 @@
 
-<!-- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calvin Kan Photography Portfolio</title>
-  <link rel="pagesheet" href="pages.css" />
   <link rel="stylesheet" href="../styles.css" />
   <style>
     body {
@@ -57,7 +56,10 @@
   </header>
 
   <main class="gallery">
-   
+    <!-- prettier-ignore -->
+    <!-- Start of photo list -->
+    <!-- Note: All images use same alt text format -->
+    <!-- Adjust or customize alt text if desired -->
     <img src="images/photo_001.jpg" alt="Photo 1" />
     <img src="images/photo_002.jpg" alt="Photo 2" />
     <img src="images/photo_003.jpg" alt="Photo 3" />
@@ -490,166 +492,5 @@
   <footer>
     &copy; 2025 Calvin Kan. All rights reserved.
   </footer>
-</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calvin Kan Photography Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header>
-    <h1>Calvin Kan Photography</h1>
-    <p>My collection of captured sights and scenes</p>
-  </header>
-
-  <div class="controls">
-    <div class="page-info">
-      <span id="photo-range">Photos 1-50</span> of <span id="total-photos">427</span>
-    </div>
-    
-    <div class="pagination">
-      <div class="pagination-buttons">
-        <button class="page-btn" id="first-btn" onclick="goToPage(1)">First</button>
-        <button class="page-btn" id="prev-btn" onclick="goToPage(currentPage - 1)">Previous</button>
-        <button class="page-btn" id="next-btn" onclick="goToPage(currentPage + 1)">Next</button>
-        <button class="page-btn" id="last-btn" onclick="goToPage(totalPages)">Last</button>
-      </div>
-      
-      <div class="page-numbers" id="page-numbers"></div>
-    </div>
-  </div>
-
-  <main class="gallery" id="gallery">
-    <div class="loading">Loading photos...</div>
-  </main>
-
-  <div class="controls">
-    <div class="pagination">
-      <div class="pagination-buttons">
-        <button class="page-btn" id="first-btn-bottom" onclick="goToPage(1)">First</button>
-        <button class="page-btn" id="prev-btn-bottom" onclick="goToPage(currentPage - 1)">Previous</button>
-        <button class="page-btn" id="next-btn-bottom" onclick="goToPage(currentPage + 1)">Next</button>
-        <button class="page-btn" id="last-btn-bottom" onclick="goToPage(totalPages)">Last</button>
-      </div>
-      
-      <div class="page-numbers" id="page-numbers-bottom"></div>
-    </div>
-  </div>
-
-  <footer>
-    &copy; 2025 Calvin Kan. All rights reserved.
-  </footer>
-
-  <script>
-    const PHOTOS_PER_PAGE = 50;
-    const TOTAL_PHOTOS = 427;
-    const totalPages = Math.ceil(TOTAL_PHOTOS / PHOTOS_PER_PAGE);
-    let currentPage = 1;
-
-    function generatePhotoHTML(photoNumber) {
-      const paddedNumber = photoNumber.toString().padStart(3, '0');
-      return `<img src="images/photo_${paddedNumber}.jpg" alt="Photo ${photoNumber}" loading="lazy" />`;
-    }
-
-    function loadPage(pageNumber) {
-      const gallery = document.getElementById('gallery');
-      const startPhoto = (pageNumber - 1) * PHOTOS_PER_PAGE + 1;
-      const endPhoto = Math.min(pageNumber * PHOTOS_PER_PAGE, TOTAL_PHOTOS);
-      
-      // Show loading state
-      gallery.innerHTML = '<div class="loading">Loading photos...</div>';
-      
-      // Simulate loading delay for better UX
-      setTimeout(() => {
-        let photosHTML = '';
-        
-        for (let i = startPhoto; i <= endPhoto; i++) {
-          photosHTML += generatePhotoHTML(i);
-        }
-        
-        gallery.innerHTML = photosHTML;
-        
-        // Update page info
-        document.getElementById('photo-range').textContent = `Photos ${startPhoto}-${endPhoto}`;
-        
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 300);
-    }
-
-    function updatePaginationControls() {
-      const topButtons = {
-        first: document.getElementById('first-btn'),
-        prev: document.getElementById('prev-btn'),
-        next: document.getElementById('next-btn'),
-        last: document.getElementById('last-btn')
-      };
-      
-      const bottomButtons = {
-        first: document.getElementById('first-btn-bottom'),
-        prev: document.getElementById('prev-btn-bottom'),
-        next: document.getElementById('next-btn-bottom'),
-        last: document.getElementById('last-btn-bottom')
-      };
-      
-      // Update button states for both top and bottom
-      [topButtons, bottomButtons].forEach(buttons => {
-        buttons.first.disabled = currentPage === 1;
-        buttons.prev.disabled = currentPage === 1;
-        buttons.next.disabled = currentPage === totalPages;
-        buttons.last.disabled = currentPage === totalPages;
-      });
-      
-      // Update page numbers for both top and bottom
-      const pageNumbersTop = document.getElementById('page-numbers');
-      const pageNumbersBottom = document.getElementById('page-numbers-bottom');
-      
-      // Calculate which page numbers to show
-      const maxVisiblePages = 5;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-      
-      // Adjust start page if we're near the end
-      if (endPage - startPage + 1 < maxVisiblePages) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
-      
-      // Generate page numbers HTML
-      let pageNumbersHTML = '';
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbersHTML += `<div class="page-num ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</div>`;
-      }
-      
-      pageNumbersTop.innerHTML = pageNumbersHTML;
-      pageNumbersBottom.innerHTML = pageNumbersHTML;
-    }
-
-    function goToPage(pageNumber) {
-      if (pageNumber < 1 || pageNumber > totalPages || pageNumber === currentPage) {
-        return;
-      }
-      
-      currentPage = pageNumber;
-      loadPage(currentPage);
-      updatePaginationControls();
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft' && currentPage > 1) {
-        goToPage(currentPage - 1);
-      } else if (e.key === 'ArrowRight' && currentPage < totalPages) {
-        goToPage(currentPage + 1);
-      }
-    });
-
-    // Initialize
-    loadPage(1);
-    updatePaginationControls();
-  </script>
 </body>
 </html>

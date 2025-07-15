@@ -1371,13 +1371,8 @@
   <a href="images/photo_427.jpg" download>
     <img src="images/photo_427.webp" alt="Photo 427" loading="lazy" />
   </a>
-  <div class="controls">
-    <button class="prevBtn">Previous</button>
-    <span class="pageInfo"></span>
-    <button class="nextBtn">Next</button>
-  </div>
-  </main>
   
+  </main>
   <footer>
     &copy; 2025 Calvin Kan. All rights reserved.
   </footer>
@@ -1394,28 +1389,22 @@
     photos.forEach((img, index) => {
       img.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
     });
-    document.querySelectorAll('.pageInfo').forEach(el => {
-      el.textContent = `Page ${page} of ${totalPages}`;
-    });
+    document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
   }
 
-  document.querySelectorAll('.prevBtn').forEach(btn => {
-    btn.onclick = () => {
-      if (currentPage > 1) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    };
-  });
+  document.getElementById('prevBtn').onclick = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  };
 
-  document.querySelectorAll('.nextBtn').forEach(btn => {
-    btn.onclick = () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    };
-  });
+  document.getElementById('nextBtn').onclick = () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  };
 
   showPage(currentPage);
 </script>

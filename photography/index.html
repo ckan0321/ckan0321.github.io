@@ -29,6 +29,7 @@
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 10px;
       padding: 1rem;
+      padding-bottom: 0;
     }
     .gallery img {
       width: 100%;
@@ -53,6 +54,7 @@
       background: #fff;
       border-bottom: 1px solid #ddd;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-top: 1rem;
       margin-bottom: 1rem;
     }
     .controls button {
@@ -1371,9 +1373,9 @@
   </a>
   </main>
   <div class="controls">
-    <button id="prevBtn">Previous</button>
-    <span id="pageInfo"></span>
-    <button id="nextBtn">Next</button>
+    <button class="prevBtn">Previous</button>
+    <span class="pageInfo"></span>
+    <button class="nextBtn">Next</button>
   </div>
   <footer>
     &copy; 2025 Calvin Kan. All rights reserved.
@@ -1391,22 +1393,28 @@
     photos.forEach((img, index) => {
       img.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
     });
-    document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
+    document.querySelectorAll('.pageInfo').forEach(el => {
+      el.textContent = `Page ${page} of ${totalPages}`;
+    });
   }
 
-  document.getElementById('prevBtn').onclick = () => {
-    if (currentPage > 1) {
-      currentPage--;
-      showPage(currentPage);
-    }
-  };
+  document.querySelectorAll('.prevBtn').forEach(btn => {
+    btn.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    };
+  });
 
-  document.getElementById('nextBtn').onclick = () => {
-    if (currentPage < totalPages) {
-      currentPage++;
-      showPage(currentPage);
-    }
-  };
+  document.querySelectorAll('.nextBtn').forEach(btn => {
+    btn.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    };
+  });
 
   showPage(currentPage);
 </script>

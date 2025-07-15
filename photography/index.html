@@ -47,6 +47,28 @@
       color: #fff;
       margin-top: 2rem;
     }
+    .controls {
+      text-align: center;
+      padding: 1rem;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+    .controls button {
+      margin: 0 10px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .controls button:hover {
+      background-color: #666;
+    }
   </style>
 </head>
 <body>
@@ -492,5 +514,41 @@
   <footer>
     &copy; 2025 Calvin Kan. All rights reserved.
   </footer>
+</body>
+<div class="controls">
+  <button id="prevBtn">Previous</button>
+  <span id="pageInfo"></span>
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+  const photos = document.querySelectorAll('.gallery img');
+  const perPage = 50;
+  let currentPage = 1;
+  const totalPages = Math.ceil(photos.length / perPage);
+
+  function showPage(page) {
+    photos.forEach((img, index) => {
+      img.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
+    });
+    document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
+  }
+
+  document.getElementById('prevBtn').onclick = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  };
+
+  document.getElementById('nextBtn').onclick = () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  };
+
+  showPage(currentPage);
+</script>
 </body>
 </html>

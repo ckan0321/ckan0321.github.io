@@ -26,7 +26,7 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 10px;
       padding: 1rem;
       padding-bottom: 0;
@@ -39,7 +39,7 @@
       transition: transform 0.2s ease-in-out;
     }
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.2);
     }
     footer {
       text-align: center;
@@ -1380,7 +1380,7 @@
 
 <script>
   const photos = document.querySelectorAll('.gallery img');
-  const perPage = 60;
+  const perPage = 36;
   let currentPage = 1;
   const totalPages = Math.ceil(photos.length / perPage);
 

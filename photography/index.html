@@ -73,7 +73,9 @@
 <body>
   <header>
     <h1>Calvin Kan Photography</h1>
-    <p>My collection of sights and scenes. Click to download!</p>
+    <p> My collection of sights and scenes. Click to download! <br> 
+        <a href="https://ckan0321.github.io">Visit my home page here.</a>
+    </p>
   </header>
 
   <div class="controls">
@@ -509,10 +511,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
     document.getElementById('pageInfoBottom').textContent = `Page ${page} of ${totalPages}`;
-    document.getElementById('prevBtn').disabled = (page === 1);
-    document.getElementById('nextBtn').disabled = (page === totalPages);
-    document.getElementById('prevBtnBottom').disabled = (page === 1);
-    document.getElementById('nextBtnBottom').disabled = (page === totalPages);
+    document.getElementById('prevBtn').style.display = (page === 1) ? 'none' : '';
+    document.getElementById('nextBtn').style.display = (page === totalPages) ? 'none' : '';
+    document.getElementById('prevBtnBottom').style.display = (page === 1) ? 'none' : '';
+    document.getElementById('nextBtnBottom').style.display = (page === totalPages) ? 'none' : '';
   }
 
   function goPrev() {

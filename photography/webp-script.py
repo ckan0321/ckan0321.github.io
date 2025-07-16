@@ -1,34 +1,30 @@
+
+
 import os
+import re
+from PIL import Image
 
-# Directory containing your images (adjust if needed)
-IMAGE_DIR = "photography/images"
+# Define the path to the images directory
+images_dir = os.path.join(os.path.dirname(__file__), 'images')
 
-# Output HTML file
-OUTPUT_FILE = "gallery.html"
+# Regex pattern to match "photo - ###.jpeg"
+pattern = re.compile(r'^photo - (\d{1,3})\.jpeg$', re.IGNORECASE)
 
-# Get sorted list of base filenames that have both .webp and .jpg
-files = os.listdir(IMAGE_DIR)
-base_names = sorted(set(
-    os.path.splitext(f)[0]
-    for f in files
-    if f.endswith(".webp") and f.replace(".webp", ".jpg") in files
-))
+for filename in os.listdir(images_dir):
+    match = pattern.match(filename)
+    if match:
+        number = match.group(1).zfill(3)  # Pad with zeros to make it 3 digits
+        old_path = os.path.join(images_dir, filename)
+        new_filename = f"photo_{number}.jpeg"
+        new_path = os.path.join(images_dir, new_filename)
 
-# Generate HTML
-html = []
-html.append('<main class="gallery">')
+        # Rename the file
+        os.rename(old_path, new_path)
+        print(f"Renamed: {filename} -> {new_filename}")
 
-for name in base_names:
-    webp_path = f"{IMAGE_DIR}/{name}.webp"
-    jpg_path = f"{IMAGE_DIR}/{name}.jpg"
-    html.append(f'  <a href="{jpg_path}" download>')
-    html.append(f'    <img src="{webp_path}" alt="Photo {name}" loading="lazy" />')
-    html.append('  </a>')
-
-html.append('</main>')
-
-# Write to file
-with open(OUTPUT_FILE, "w") as f:
-    f.write("\n".join(html))
-
-print(f"Generated gallery HTML in {OUTPUT_FILE}")
+        # Convert to .webp
+        with Image.open(new_path) as img:
+            webp_filename = f"photo_{number}.webp"
+            webp_path = os.path.join(images_dir, webp_filename)
+            img.save(webp_path, "WEBP")
+            print(f"Created: {webp_filename}")

@@ -24,7 +24,7 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
       gap: 10px;
       padding: 1rem;
     }
@@ -499,7 +499,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const photoLinks = document.querySelectorAll('.gallery a');
-  const perPage = 36;
+  const perPage = 24;
   let currentPage = 1;
   const totalPages = Math.ceil(photoLinks.length / perPage);
 

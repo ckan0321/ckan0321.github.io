@@ -29,7 +29,6 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 10px;
       padding: 1rem;
-      padding-bottom: 0;
     }
     .gallery img {
       width: 100%;
@@ -1379,14 +1378,14 @@
 
 
 <script>
-  const photos = document.querySelectorAll('.gallery img');
+  const photoLinks = document.querySelectorAll('.gallery a');
   const perPage = 36;
   let currentPage = 1;
   const totalPages = Math.ceil(photos.length / perPage);
 
   function showPage(page) {
-    photos.forEach((img, index) => {
-      img.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
+    photoLinks.forEach((link, index) => {
+      link.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
     });
     document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
   }

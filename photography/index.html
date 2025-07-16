@@ -1369,6 +1369,13 @@
     <img src="images/photo_427.webp" alt="Photo 427" loading="lazy" />
   </a>
   </main>
+
+  <div class="controls">
+    <button id="prevBtnBottom">Previous</button>
+    <span id="pageInfoBottom"></span>
+    <button id="nextBtnBottom">Next</button>
+  </div>
+
   <footer>
     &copy; 2025 Calvin Kan. All rights reserved.
   </footer>
@@ -1387,23 +1394,30 @@ document.addEventListener('DOMContentLoaded', function() {
       link.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
     });
     document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
+    document.getElementById('pageInfoBottom').textContent = `Page ${page} of ${totalPages}`;
     document.getElementById('prevBtn').disabled = (page === 1);
     document.getElementById('nextBtn').disabled = (page === totalPages);
+    document.getElementById('prevBtnBottom').disabled = (page === 1);
+    document.getElementById('nextBtnBottom').disabled = (page === totalPages);
   }
 
-  document.getElementById('prevBtn').onclick = () => {
+  function goPrev() {
     if (currentPage > 1) {
       currentPage--;
       showPage(currentPage);
     }
-  };
-
-  document.getElementById('nextBtn').onclick = () => {
+  }
+  function goNext() {
     if (currentPage < totalPages) {
       currentPage++;
       showPage(currentPage);
     }
-  };
+  }
+
+  document.getElementById('prevBtn').onclick = goPrev;
+  document.getElementById('nextBtn').onclick = goNext;
+  document.getElementById('prevBtnBottom').onclick = goPrev;
+  document.getElementById('nextBtnBottom').onclick = goNext;
 
   showPage(currentPage);
 });

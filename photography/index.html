@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1378,16 +1376,19 @@
 
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
   const photoLinks = document.querySelectorAll('.gallery a');
   const perPage = 36;
   let currentPage = 1;
-  const totalPages = Math.ceil(photos.length / perPage);
+  const totalPages = Math.ceil(photoLinks.length / perPage);
 
   function showPage(page) {
     photoLinks.forEach((link, index) => {
       link.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? '' : 'none';
     });
     document.getElementById('pageInfo').textContent = `Page ${page} of ${totalPages}`;
+    document.getElementById('prevBtn').disabled = (page === 1);
+    document.getElementById('nextBtn').disabled = (page === totalPages);
   }
 
   document.getElementById('prevBtn').onclick = () => {
@@ -1405,6 +1406,7 @@
   };
 
   showPage(currentPage);
+});
 </script>
 </body>
 </html>
